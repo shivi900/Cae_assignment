@@ -3,7 +3,7 @@
  * Description: This is the file for the listing of flights.
  * CAE: Mobile Developer Assignment.
  */
-import React, { Component } from 'react';
+import React, { Component, ReactElement } from 'react';
 import {
   View,
   Text,
@@ -34,53 +34,52 @@ export default class FrontScreen extends Component<FontScreenProps, FlightRespon
    */
   private getFlightDetails = async () => {
     const response = await axios.get<Array<FlightsResponse>>("https://rosterbuster.aero/wp-content/uploads/dummy-response.json")
-    console.log('response', response);
     this.setState({
       FlightDetails: response.data
     })
   }
   /**
    * @function detailsFlight
-   * @description Navu=igation to the details of flights.
+   * @description Navigation to the details of flights.
    * @private function.
    */
-  private detailsFlight=()=>{
-    console.log('details',this.state.FlightDetails);
-    this.props.navigation.navigate('Detailscreen',{flightDeatils:this.state.FlightDetails})
+  private detailsFlight = (details: FlightsResponse) => {
+    this.props.navigation.navigate('Detailscreen', { flightdetails: details })
   }
   /**
    * @returns {render}
    * @description render function for the jsx for the listing of flights.
    * @returns {JSX}
    */
-  render() {
-    console.log('dataaaa----->>>>',this.state.FlightDetails);
+  render(): ReactElement {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.stripContainer}>
           <Text
             style={styles.stripHeadingText}>ma 18 june,2018</Text>
         </View>
-        <View style={{flex:1}}>
-        <FlatList
-          style={styles.listContainer}
-          keyExtractor={(item:FlightsResponse)=>item.DutyID.toString()}
-          data={this.state.FlightDetails}
-          renderItem={({ item }: { item: FlightsResponse }) => {
-            return (
-              <TouchableOpacity onPress={()=>this.detailsFlight()}  style={{
-                backgroundColor: 'white'
-              }}>
-             <View style={styles.flightContainer}> 
-           <Image style={styles.flightImage} source={ImageConstants.AEROPLANE}/>
-                <Text style={styles.arrivalDepartureNmaes}>{item.Destination}-{item.Departure}</Text>
-                <Text style={styles.arrivalDepartureNamesText}>{item.Time_Arrive}{'-'}{item.Time_Depart}</Text>
-                </View>
-                <View style={styles.separaterLine}></View>
-              </TouchableOpacity>
-            )
-          }}
-        />
+        <View style={{ flex: 1 }}>
+          <FlatList
+            style={styles.listContainer}
+            keyExtractor={(item: FlightsResponse) => item.DutyID.toString()}
+            data={this.state.FlightDetails}
+            renderItem={({ item }: { item: FlightsResponse }) => {
+              return (
+                <TouchableOpacity
+                  onPress={() => this.detailsFlight(item)}
+                  style={{
+                    backgroundColor: 'white'
+                  }}>
+                  <View style={styles.flightContainer}>
+                    <Image style={styles.flightImage} source={ImageConstants.AEROPLANE} />
+                    <Text style={styles.arrivalDepartureNmaes}>{item.Destination}-{item.Departure}</Text>
+                    <Text style={styles.arrivalDepartureNamesText}>{item.Time_Arrive}{'-'}{item.Time_Depart}</Text>
+                  </View>
+                  <View style={styles.separaterLine}></View>
+                </TouchableOpacity>
+              )
+            }}
+          />
         </View>
       </SafeAreaView>
     )

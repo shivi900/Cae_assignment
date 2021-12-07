@@ -1,0 +1,18 @@
+{
+    "FLIGHT_NAME":"Flight Name:",
+    "DEPARTURE":"Departure:",
+    "DESTINATION":"Destination:",
+    "DEPART_TIME":"Time to depart:",
+    "ARRIVAL_TIME":"Time to arrival:",
+    "CAPTAIN":"Captain:",
+    "DUTY_ID":"Duty Id:",
+    "DUTY_CODE":"Duty Code:",
+    "TAIL":"Tail:",
+    "HEADING_DETAILS":"DETAILS OF FLIGHT"
+
+}
+
+
+
+
+

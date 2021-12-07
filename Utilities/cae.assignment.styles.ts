@@ -1,10 +1,15 @@
 /**
- * Filename: cae.assignment.interface.ts
- * Description: This is the file for the interface of component.
+ * Filename: cae.assignment.styles.ts.
+ * Description: This is the file for the common styles of all screens.
+ * CAE: Mobile Developer Assignment.
  */
 
 import { StyleSheet } from "react-native";
 import { ColoPalette } from "./colors.constants";
+/**
+ * @exports StyleSheet
+ * @description styesheet for the styles of Ui of screens.
+ */
 export default StyleSheet.create({
     container: {
         flex: 1,
@@ -44,5 +49,18 @@ export default StyleSheet.create({
     },
     listContainer: { flex: 1, backgroundColor: 'white' },
     flightImage: { tintColor: 'black', marginStart: 16 },
-    arrivalDepartureNamesText: { position: 'absolute', right: 20, alignSelf: 'center', bottom: 6, color: 'red' }
+    arrivalDepartureNamesText: { position: 'absolute', right: 20, alignSelf: 'center', bottom: 6, color: 'red' },
+    detailsHeading:{fontSize:20,alignSelf:'center',marginTop:30,fontWeight:'bold'},
+    detilsInformationContainer:{
+        flexDirection:'column',
+        marginStart:20,
+        marginTop:28,
+        justifyContent:'space-evenly',
+        flex:1
+    },
+    detailsText:{
+        fontSize:18,
+        fontWeight:'bold',
+        
+    }
 })
