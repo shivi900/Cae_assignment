@@ -1,3 +1,8 @@
+/**
+ * Filename: detailsscreen.tsx.
+ * Description: This is the file for the details of flights.
+ * CAE: Mobile Developer Assignment.
+ */
 import React, { Component } from 'react';
 import {
   View,

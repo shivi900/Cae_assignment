@@ -1,4 +1,8 @@
-
+/**
+ * Filename: frontscreen.tsx.
+ * Description: This is the file for the listing of flights.
+ * CAE: Mobile Developer Assignment.
+ */
 import React, { Component } from 'react';
 import {
   View,
@@ -23,6 +27,11 @@ export default class FrontScreen extends Component<FontScreenProps, FlightRespon
   componentDidMount() {
     this.getFlightDetails();
   }
+  /**
+   * @function getFlightDetails
+   * @private function.
+   * @description function for the api of listing of flight details.
+   */
   private getFlightDetails = async () => {
     const response = await axios.get<Array<FlightsResponse>>("https://rosterbuster.aero/wp-content/uploads/dummy-response.json")
     console.log('response', response);
@@ -30,11 +39,20 @@ export default class FrontScreen extends Component<FontScreenProps, FlightRespon
       FlightDetails: response.data
     })
   }
+  /**
+   * @function detailsFlight
+   * @description Navu=igation to the details of flights.
+   * @private function.
+   */
   private detailsFlight=()=>{
     console.log('details',this.state.FlightDetails);
-    
     this.props.navigation.navigate('Detailscreen',{flightDeatils:this.state.FlightDetails})
   }
+  /**
+   * @returns {render}
+   * @description render function for the jsx for the listing of flights.
+   * @returns {JSX}
+   */
   render() {
     console.log('dataaaa----->>>>',this.state.FlightDetails);
     return (
@@ -45,7 +63,7 @@ export default class FrontScreen extends Component<FontScreenProps, FlightRespon
         </View>
         <View style={{flex:1}}>
         <FlatList
-          style={{ flex: 1, backgroundColor: 'white' }}
+          style={styles.listContainer}
           keyExtractor={(item:FlightsResponse)=>item.DutyID.toString()}
           data={this.state.FlightDetails}
           renderItem={({ item }: { item: FlightsResponse }) => {
@@ -54,11 +72,10 @@ export default class FrontScreen extends Component<FontScreenProps, FlightRespon
                 backgroundColor: 'white'
               }}>
              <View style={styles.flightContainer}> 
-           <Image style={{tintColor:'black',marginStart:16}} source={ImageConstants.AEROPLANE}/>
+           <Image style={styles.flightImage} source={ImageConstants.AEROPLANE}/>
                 <Text style={styles.arrivalDepartureNmaes}>{item.Destination}-{item.Departure}</Text>
-                <Text style={{position:'absolute',right:20,alignSelf:'center',bottom:6,color:'red'}}>{item.Time_Arrive}{'-'}{item.Time_Depart}</Text>
+                <Text style={styles.arrivalDepartureNamesText}>{item.Time_Arrive}{'-'}{item.Time_Depart}</Text>
                 </View>
-                
                 <View style={styles.separaterLine}></View>
               </TouchableOpacity>
             )

@@ -27,7 +27,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         flex: 1,
         paddingVertical: 20,
-       
+
     },
     separaterLine: {
         width: '100%',
@@ -40,6 +40,9 @@ export default StyleSheet.create({
         color: 'black',
         marginStart: 16,
         fontWeight: 'bold',
-        bottom:10
-    }
+        bottom: 10
+    },
+    listContainer: { flex: 1, backgroundColor: 'white' },
+    flightImage: { tintColor: 'black', marginStart: 16 },
+    arrivalDepartureNamesText: { position: 'absolute', right: 20, alignSelf: 'center', bottom: 6, color: 'red' }
 })
